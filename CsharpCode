@@ -1,146 +1,53 @@
 using System;
+using System.Xml;
+using MinecraftCourse.Lessons.Lessons;
 
 namespace Program
 {
-    //Lesson 1
-    class Block                 //Класс Блока
-    {
-        public string Material;         // поле: из чего блок (алмаз, дерево, камень)
-        public int X, Y, Z;             // поле: координаты в мире
-        public void Place()             // метод: поставить блок
-        {
-            Console.WriteLine($"Поставлен {Material} - блок на ({X},{Y},{Z})");
-
-        }
-    }
-
-    class Item                  //Класс предмета 
-    {
-        public string Name;
-        public int Count;
-        public void ShowInfo()
-        {
-            Console.WriteLine($"В инвентаре {Count} {Name}");
-        }
-    }
-
-    //Lesson 2
-    class Player
-    {
-        private int hearts;                 // мнимое Здоровье игрока
-        public string Name { get; set; }    // Имя игрока свободно задаваемое | изменяемое 
-        public int Hearts                   // Фактическое здоровья игрока
-        {
-            get => hearts;
-            set
-            {
-                if (value < 0 || value > 20)
-                    throw new ArgumentException("HP не может быть больше 20 или меньшше 0 !");
-                hearts = value;
-            }
-        }
-        public void Player_Info()
-        {
-            Console.WriteLine($"У игрока {Name} {hearts} HP");
-        }
-    }
-
-    //      ** Lesson 3                 комбинацией знаков ** я буду помечать места где сделал изменения
-    
-    class Tool
-    {
-        //private int durability;             // мнимая прочность инструмента
-        public string Tool_Name { get;}
-        public int Durability { get; }
-        //{
-        //    get => durability;
-        //    set
-        //    {
-        //        if (value < 0 || value > 1561)
-        //            throw new ArgumentException("У инструмента не может быть меньше 0 или больше 1561 прочности");
-        //        durability = value;
-        //    }
-        //}
-
-        public Tool(string tool_name, int durability)
-        {
-            Tool_Name = tool_name;
-            Durability = durability;
-        }
-        //public Tool(string tool_name) : this(tool_name, 100) { }        // перегрузка : по умолчанию прочность 100
-
-
-        public Tool(string tool_name) : this(tool_name, GetDefaultDurability(tool_name)) { }
-        
-        private static int GetDefaultDurability(string name)
-        {
-            if (name.Contains("золот", StringComparison.OrdinalIgnoreCase)) return 33;
-            if (name.Contains("деревянн", StringComparison.OrdinalIgnoreCase)) return 59;
-            if (name.Contains("каменн", StringComparison.OrdinalIgnoreCase)) return 131;
-            if (name.Contains("медн", StringComparison.OrdinalIgnoreCase)) return 190;
-            if (name.Contains("железн", StringComparison.OrdinalIgnoreCase)) return 250;
-            if (name.Contains("алмазн", StringComparison.OrdinalIgnoreCase)) return 1561;
-            if (name.Contains("незеритов", StringComparison.OrdinalIgnoreCase)) return 2031;
-            return -1;      // неразрушимый
-            // новая перегрузка : по умолчанию. если предмет не определиться по типу, будет определён в тип с прочностью -1 , что по факту делает не разрушимым
-        }
-
-        public void Tool_Info() => Console.WriteLine($"{Tool_Name}, прочность {Durability}");
-    }
 
     class Program
     {
         static void Main()
         {
-                                                                                                // Пример Урока 1  из дипсика 
-         
-            Block diamond = new Block();        //создаём обьект - конкретный блок
-            diamond.Material = "Алмаз";
-            diamond.X = 0;
-            diamond.Y = 0;
-            diamond.Z = 0;
-            diamond.Place();                    // Поставлен Алмаз-Блок на (0,0,0,)
 
-                    // Задача 1 установленная по этому уроку.
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Item Apple = new Item();            //создаём обьект - конкретный предмет
-            Apple.Count = 5;
-            Apple.Name = "Яблоко";
-            Apple.ShowInfo();                   // В инвентаре 5 яблок
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("╔══════════════════════════════════╗");
+                Console.WriteLine("║   🎮 C# через Minecraft 🎮       ║");
+                Console.WriteLine("╠══════════════════════════════════╣");
+                Console.WriteLine("║  1  - Класс и объект             ║");
+                Console.WriteLine("║  2  - Инкапсуляция               ║");
+                Console.WriteLine("║  3  - Конструкторы               ║");
+                Console.WriteLine("║  4  - Наследование               ║");
+                Console.WriteLine("║  5  - Полиморфизм                ║");
+                Console.WriteLine("║  ...                             ║");
+                Console.WriteLine("║  0  - Выход                      ║");
+                Console.WriteLine("╚══════════════════════════════════╝");
+                Console.Write("\nВыбери урок: ");
+
+                var choice = Console.ReadLine();
+
+                Console.Clear();
+
+                switch (choice)
+                {
+                    case "1": Less1.L01_Block.Run(); break;
+                    case "2": Less2.L02_Player.Run(); break;
 
 
-                                                                                            // Пример Урока 2  из дипсика
+                    case "0": return;
+                    default:
+                        Console.WriteLine("Такого урока нет");
+                        break;
+                }
 
-            Player Steve = new Player { Name = "Steve", Hearts = 20};
-            // steve.Hearts = 20;  // ❌ исключение: Сердечек не может быть больше 20!
-            Steve.Player_Info();                // У игрока Steve 20 HP
+                Console.WriteLine("\nНажми [Enter] чтобы вернуться в меню. . .");
+                Console.ReadLine();
+            }
 
-                    // Задача 2 установленная по этому уроку
-
-            //Tool Diamond_Pickaxe = new Tool { Tool_Name = "Алмазная Кирка", Durability = 1561 };
-            // Diamond_Pickaxe.Dyrability = 1561;   ❌ исключение: Прочности не может быть больше 1561!
-
-
-                                                                                            // Пример Урока 3  из дипсика
-            
-            var Diamond_Pickaxe = new Tool("Алмазная кирка", 1561);     
-            // Алмазная Кирка, 1561 ед. прочности
-            var Stick = new Tool("Палка");
-            // Палка, 100 ед. прочности         =>          100 по перегрузке
-
-                    //Задача 3 установленная по этому уроку
-            // Я честно не понял что от меня требует дипсик в задании
-            // "Добавь конструктор без параметров, который ставит Name = "Деревянная кирка", Durability = 59."
-            // потому сделаю с методом  If/else
-            
-            var Wooden_Pickaxe = new Tool("Деревянная кирка");
-            var Golden_Sword = new Tool("Золотой меч");
-            // Здесь при перегрузке и обозначении "Деревянная кирка" будет определяться 59 ед. прочности этому полю
-
-            Diamond_Pickaxe.Tool_Info();  // Алмазная кирка, прочность 1561
-            Stick.Tool_Info();            // Палка, прочность -1
-            Wooden_Pickaxe.Tool_Info();   // Деревянная кирка, прочность 59
-            Golden_Sword.Tool_Info();     // Золотой меч, прочность 59
 
         }
     }
