@@ -8,5 +8,5 @@
 
 Upd №1 
 Понял что делал всё не очень логично с "Уроками" 
-https://chat.deepseek.com/share/h0st421ysb1nbnmj6w
+https://chat.deepseek.com/share/20tbp5nmtra6mvc6iy
 пример того как должно выглядеть
