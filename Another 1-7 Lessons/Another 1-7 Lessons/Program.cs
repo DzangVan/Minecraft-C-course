@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 
 namespace Program
 {
-    class Block
+    //Lesson 1
+    class Block                 //Класс Блока
     {
         public string Material;         // поле: из чего блок (алмаз, дерево, камень)
         public int X, Y, Z;             // поле: координаты в мире
@@ -13,13 +14,46 @@ namespace Program
         }
     }
 
-    class Item
+    class Item                  //Класс предмета 
     {
         public string Name;
         public int Count;
         public void ShowInfo()
         {
-            Console.WriteLine($"В инвентаре {Count}{Name}");
+            Console.WriteLine($"В инвентаре {Count} {Name}");
+        }
+    }
+
+    //Lesson 2
+    class Player
+    {
+        private int hearts;                 // мнимое Здоровье игрока
+        public string Name { get; set; }    // Имя игрока свободно задаваемое | изменяемое 
+        public int Hearts                   // Фактическое здоровья игрока
+        {
+            get => hearts;
+            set
+            {
+                if (value < 0 || value > 20)
+                    throw new ArgumentException("Сердец не может быть больше 20 или меньшше 0 !");
+                hearts = value;
+            }
+        }
+    }
+
+    class Tool
+    {
+        private int durability;             // мнимая прочность инструмента
+        public string Tool_Name { get; set; }
+        public int Durability
+        {
+            get => durability;
+            set
+            {
+                if (value < 0 || value > 1561)
+                    throw new ArgumentException("У инструмента не может быть меньше 0 или больше 1561 прочности");
+                durability = value;
+            }
         }
     }
 
@@ -27,7 +61,7 @@ namespace Program
     {
         static void Main()
         {
-                // Пример из дипсика 
+                                                                                                // Пример Урока 1  из дипсика 
             Block diamond = new Block();        //создаём обьект - конкретный блок
             diamond.Material = "Алмаз";
             diamond.X = 0;
@@ -35,15 +69,22 @@ namespace Program
             diamond.Z = 0;
             diamond.Place();                    // Поставлен Алмаз-Блок на (0,0,0,)
 
-        //Задача 1 установленная по этому уроку.
+                // Задача 1 установленная по этому уроку.
 
             Item Apple = new Item();            //создаём обьект - конкретный предмет
             Apple.Count = 5;
             Apple.Name = "Яблоко";
             Apple.ShowInfo();                   // В инвентаре 5 яблок
 
+
+                                                                                            // Пример Урока 2  из дипсика
+            Player Steve = new Player { Name = "Steve", Hearts = 20};
+            // steve.Hearts = 100;  // ❌ исключение: Сердечек не может быть больше 20!
+
+            // Задача 2 установленная по этому уроку
+            Tool Diamond_Pickaxe = new Tool { Tool_Name = "Алмазная Кирка", Durability = 1561 };
+            // Diamond_Pickaxe.Dyrability = 1561;   ❌ исключение: Прочности не может быть больше 1561!
+
         }
     }
-
-
 }
