@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Новый профиль",
+    "Projects": [
+      {
+        "Path": "Another 1-7 Lessons\\Another 1-7 Lessons.csproj",
+        "Action": "Start",
+        "DebugTarget": "Another 1-7 Lessons"
+      }
+    ]
+  }
+]
