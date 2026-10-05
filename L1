@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MinecraftCourse.Lessons.Lessons
+{
+    internal class Less1
+    {
+        class Block                 //Класс Блока
+        {
+            public string Material;         // поле: из чего блок (алмаз, дерево, камень)
+            public int X, Y, Z;             // поле: координаты в мире
+            public void Place()             // метод: поставить блок
+            {
+                Console.WriteLine($"Поставлен {Material} - блок на ({X},{Y},{Z})");
+
+            }
+        }
+
+        // Задача 1 
+        class Item                  //Класс предмета 
+        {
+            public string Name;
+            public int Count;
+            public void ShowInfo()
+            {
+                Console.WriteLine($"В инвентаре {Count} {Name}");
+            }
+        }
+
+        public static class L01_Block
+        {
+            public static void Run()
+            {
+                Console.WriteLine("=== Урок 1: Класс и обьект ===\n");
+
+                var diamond = new Block
+                {
+                    Material = "Алмаз", 
+                    X = 10, Y = 64, Z = 20
+                };
+                diamond.Place();
+
+                var apple = new Item
+                {
+                    Name = "Яблоко",
+                    Count = 5
+                };
+                apple.ShowInfo();
+            }   
+        }
+
+    }
+}
