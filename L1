@@ -50,6 +50,15 @@ namespace MinecraftCourse.Lessons.Lessons
                 };
                 apple.ShowInfo();
             }   
+            public static void InvInfo()
+            {
+                var apple = new Item
+                {
+                    Name = "Яблоко",
+                    Count = 5
+                }; 
+                Console.WriteLine($"{apple}");
+            }
         }
 
     }
