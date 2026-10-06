@@ -38,7 +38,7 @@ namespace Program
                     case "2": Less2.L02_Player.Run(); break;
                     case "3": Less3.L03_Tool.Run(); break;
                     case "4": Less4.L04_Entity.Run(); break;
-                    case "5": Less5.L05_Mob.Run(); break;
+                    //case "5": Less5.L05_Mob.Run(); break;
 
 
                     case "0": return;
